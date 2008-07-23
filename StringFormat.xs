@@ -8,6 +8,8 @@
 
 #define HINT_KEY "Acme::StringFormat"
 
+#define my_SvPOK(sv) (SvFLAGS(sv) & (SVf_POK | SVp_POK))
+
 static UV sf_depth = 0;
 
 typedef OP* (*ck_t)(pTHX_ OP*);
@@ -20,11 +22,12 @@ sf_pp_modulo(pTHX){
 	SV* lhs = TOPm1s; /* top minus 1 scalar */
 	SV* rhs = TOPs;
 
-	if( SvPOK(lhs) && !SvAMAGIC(rhs) ){
+	if( my_SvPOK(lhs) ){
 		dTARGET;
-		const char* start = SvPV_nolen_const(lhs);
+		STRLEN len;
+		const char* start = SvPV_const(lhs, len);
 		register const char* p     = start;
-		register const char* end   = start + SvCUR(lhs);
+		register const char* end   = start + len;
 
 		bool maybe_tainted = FALSE; /* not used */
 
@@ -49,8 +52,7 @@ sf_pp_modulo(pTHX){
 		}
 		if(p != end) p--;
 
-		sv_setpvs(TARG, "");
-		sv_vcatpvfn(TARG, start, (STRLEN)(p - start), NULL, &rhs, 1, &maybe_tainted);
+		sv_vsetpvfn(TARG, start, (STRLEN)(p - start), NULL, &rhs, 1, &maybe_tainted);
 
 		sv_catpvn(TARG, p, (STRLEN)(end - p));
 

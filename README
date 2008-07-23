@@ -2,7 +2,7 @@ NAME
     Acme::StringFormat - Smart interface to sprintf()
 
 VERSION
-    This document describes Acme::StringFormat version 0.01
+    This document describes Acme::StringFormat version 0.02
 
 SYNOPSIS
         use Acme::StringFormat;
@@ -12,22 +12,25 @@ SYNOPSIS
         say '[%s][%s]' % 'foo' % 'bar'; # => [foo][bar]
 
 DESCRIPTION
-    I had a desire for a "format operator" of other languages. Now this
-    pragmatic module provides Perl with a format operator "%", which is
-    equivalent to "sprintf()".
+    I had a desire for a "format operator" of other languages. Take boost
+    C++ libraly for example:
+
+            using boost;
+            std::cout << format("[%1%][%2]") % "foo" % "bar" << std::endl;
+
+    Now this pragmatic module provides Perl with a format operator "%",
+    which is equivalent to "sprintf()".
 
 INTERFACE
   "use Acme::StringFormat;"
-    Enables the format operator in the scope;
+    Enables the format operator in the rest of the scope;
 
   "no Acme::StringFormat;"
     Disables the format operator in the rest of the scope;
 
 DIAGNOSTICS
     "Arguments mismatch for Acme::StringFormat"
-        "printf" warnings.
-
-        Too few format parameters or too many format arguments.
+        (W printf) Too few format parameters or too many format arguments.
 
 CONFIGURATION AND ENVIRONMENT
     Acme::StringFormat requires no configuration files or environment
@@ -49,18 +52,19 @@ SEE ALSO
     The following languages (or libraries) also provide "%" format
     operators:
 
-    *   boost::format for C++
+    C++ <http://www.boost.org/>.
 
-    *   Ruby
+    Ruby
+        <http://www.ruby-lang.org/>.
 
-    *   Python
+    Python
+        <http://www.python.org/>.
 
 AUTHOR
-    Goro Fuji "<gfuji (at) cpan.org >"
+    Goro Fuji <gfuji(at)cpan.org>.
 
 LICENCE AND COPYRIGHT
-    Copyright (c) 2008, Goro Fuji "<gfuji (at) cpan.org >". Some rights
-    reserved.
+    Copyright (c) 2008, Goro Fuji <gfuji(at)cpan.org>. Some rights reserved.
 
     This module is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself. See perlartistic.

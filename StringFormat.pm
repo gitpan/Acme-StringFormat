@@ -3,8 +3,7 @@ package Acme::StringFormat;
 use strict;
 use XSLoader;
 
-
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 XSLoader::load(__PACKAGE__, $VERSION);
 
@@ -24,7 +23,7 @@ Acme::StringFormat - Smart interface to sprintf()
 
 =head1 VERSION
 
-This document describes Acme::StringFormat version 0.01
+This document describes Acme::StringFormat version 0.02
 
 =head1 SYNOPSIS
 
@@ -38,6 +37,11 @@ This document describes Acme::StringFormat version 0.01
 =head1 DESCRIPTION
 
 I had a desire for a "format operator" of other languages.
+Take boost C++ libraly for example:
+
+	using boost;
+	std::cout << format("[%1%][%2]") % "foo" % "bar" << std::endl;
+
 Now this pragmatic module provides Perl with a format operator C<%>,
 which is equivalent to C<sprintf()>.
 
@@ -45,7 +49,7 @@ which is equivalent to C<sprintf()>.
 
 =head2 C<use Acme::StringFormat;>
 
-Enables the format operator in the scope;
+Enables the format operator in the rest of the scope;
 
 =head2 C<no Acme::StringFormat;>
 
@@ -57,9 +61,7 @@ Disables the format operator in the rest of the scope;
 
 =item C<< Arguments mismatch for Acme::StringFormat >>
 
-C<printf> warnings.
-
-Too few format parameters or too many format arguments.
+(W printf) Too few format parameters or too many format arguments.
 
 =back
 
@@ -87,27 +89,27 @@ The following languages (or libraries) also provide C<%> format operators:
 
 =over 4
 
-=item *
+=item C++
 
-L<boost::format|http://www.boost.org/> for C++
+L<http://www.boost.org/>.
 
-=item *
+=item Ruby
 
-L<Ruby|http://www.ruby-lang.org/>
+L<http://www.ruby-lang.org/>.
 
-=item *
+=item Python
 
-L<Python|http://www.python.org/>
+L<http://www.python.org/>.
 
 =back
 
 =head1 AUTHOR
 
-Goro Fuji C<< <gfuji (at) cpan.org > >>
+Goro Fuji E<lt>gfuji(at)cpan.orgE<gt>.
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2008, Goro Fuji  C<< <gfuji (at) cpan.org > >>. Some rights reserved.
+Copyright (c) 2008, Goro Fuji  E<lt>gfuji(at)cpan.orgE<gt>. Some rights reserved.
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.

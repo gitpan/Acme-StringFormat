@@ -1,13 +1,18 @@
---- #YAML:1.0
-name:                Acme-StringFormat
-version:             0.01
-abstract:            Smart interface to sprintf()
-license:             perl
-author:              
-    - Goro Fuji  <gfuji (at) cpan.org >
-generated_by:        ExtUtils::MakeMaker version 6.44
-distribution_type:   module
-requires:     
+---
+abstract: 'Smart interface to sprintf()'
+author:
+  - 'Goro Fuji <gfuji(at)cpan.org>.'
+distribution_type: module
+generated_by: 'Module::Install version 0.76'
+license: perl
 meta-spec:
-    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
-    version: 1.3
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Acme-StringFormat
+no_index:
+  directory:
+    - inc
+    - t
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.02
