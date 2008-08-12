@@ -1,5 +1,9 @@
 Revision history for Acme-StringFormat
 
+0.03 Tue Aug 12 11:34:23 2008
+	- update Module::Install
+	- use PERL_NO_GET_CONTEXT for efficiency
+
 0.02 Wed Jul 23 15:35:51 2008
 	- fix to work with overloaded right-hand operand
 	- fix to work with tainted left-hand operand

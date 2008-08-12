@@ -2,7 +2,7 @@ NAME
     Acme::StringFormat - Smart interface to sprintf()
 
 VERSION
-    This document describes Acme::StringFormat version 0.02
+    This document describes Acme::StringFormat version 0.03
 
 SYNOPSIS
         use Acme::StringFormat;
@@ -15,7 +15,7 @@ DESCRIPTION
     I had a desire for a "format operator" of other languages. Take boost
     C++ libraly for example:
 
-            using boost;
+            using namespace boost;
             std::cout << format("[%1%][%2]") % "foo" % "bar" << std::endl;
 
     Now this pragmatic module provides Perl with a format operator "%",

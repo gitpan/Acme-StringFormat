@@ -3,7 +3,7 @@ abstract: 'Smart interface to sprintf()'
 author:
   - 'Goro Fuji <gfuji(at)cpan.org>.'
 distribution_type: module
-generated_by: 'Module::Install version 0.76'
+generated_by: 'Module::Install version 0.77'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -13,6 +13,8 @@ no_index:
   directory:
     - inc
     - t
+requires:
+  perl: 5.01
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.02
+version: 0.03

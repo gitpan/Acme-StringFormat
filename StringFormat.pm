@@ -1,9 +1,11 @@
 package Acme::StringFormat;
 
+use 5.010_000;
+
 use strict;
 use XSLoader;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 XSLoader::load(__PACKAGE__, $VERSION);
 
@@ -39,7 +41,7 @@ This document describes Acme::StringFormat version 0.02
 I had a desire for a "format operator" of other languages.
 Take boost C++ libraly for example:
 
-	using boost;
+	using namespace boost;
 	std::cout << format("[%1%][%2]") % "foo" % "bar" << std::endl;
 
 Now this pragmatic module provides Perl with a format operator C<%>,
