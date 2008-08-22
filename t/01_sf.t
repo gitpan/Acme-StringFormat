@@ -1,15 +1,16 @@
-#!perl
+#!perl -w
 
 use strict;
 use warnings;
-use warnings FATAL => 'numeric';
+use warnings FATAL => 'all';
 
-use Test::More tests => 25;
+use Test::More tests => 40;
+use Test::Exception;
 
-eval{
+dies_ok{
 	my $s = '[%s]' % 'foo';
-};
-like $@, qr/isn't numeric/, 'out of scope';
+} 'out of scope';
+like $@, qr/isn't numeric/;
 
 {
 	use Acme::StringFormat;
@@ -25,6 +26,7 @@ like $@, qr/isn't numeric/, 'out of scope';
 
 	is '[%s][%s]' % 'foo', '[foo][%s]', 'fmt*2 x arg*1';
 	is '[%s][%s]' % 'foo' % 'bar', '[foo][bar]', 'fmt*2 x arg*2';
+	is '[%s%s]'   % 'foo' % 'bar', '[foobar]',   'fmt*2 x arg*2';
 
 	{
 		no warnings 'printf';
@@ -32,24 +34,33 @@ like $@, qr/isn't numeric/, 'out of scope';
 		is 'foo' % 'bar', 'foo', 'no parameters';
 		is '[%%]' % 'foo', '[%]', '%';
 	}
+
 	is '[%%%s]' % 'foo', '[%foo]', '%%%s';
+	is '[%% %s]' % 'foo', '[% foo]', '%% %s';
+	is '[%s%%]' % 'foo', '[foo%]', '%s%%';
+	is '[%%%s%%]' % 'foo', '[%foo%]', '%%%s%%';
+
+	is '%%%s' % 'foo', '%foo', '%%%s';
+	is '%s%%' % 'foo', 'foo%', '%s%%';
+	is '%%%s%%' % 'foo', '%foo%', '%%%s%%';
+	is '%%%%%%%s' % 'foo', '%%%foo', '%%%%%%%s';
 
 	{
 		no Acme::StringFormat;
 
-		eval{
+		dies_ok{
 			my $s = '[%s]' % 'foo';
-		};
-		like $@, qr/isn't numeric/, 'out of scope';
+		} 'out of scope';
+		like $@, qr/isn't numeric/;
 	}
 
 	is '[%s]' % 'foo', '[foo]', 'pv % pv (in scope)';
 
 
-	eval{
+	dies_ok{
 		my $s = in_func('[%s]', 'foo');
-	};
-	like $@, qr/isn't numeric/, 'out of scope (in func)';
+	} 'in func';
+	like $@, qr/isn't numeric/;
 
 	use Acme::StringFormat;
 
@@ -57,8 +68,8 @@ like $@, qr/isn't numeric/, 'out of scope';
 
 	no Acme::StringFormat;
 
-	eval{
-		my $s = in_func('[%s]', 'foo');
+	dies_ok{
+		my $s = '[%s]' % 'foo';
 	};
 	like $@, qr/isn't numeric/, 'out of scope';
 }
@@ -80,23 +91,21 @@ like $@, qr/isn't numeric/, 'out of scope';
 	is $f, '[[%s]]', 'formated';
 }
 
-eval{
+dies_ok{
 	my $s = '[%s]' % 'foo';
-};
-like $@, qr/isn't numeric/, 'out of scope';
+} 'out of scope';
+like $@, qr/isn't numeric/;
 
-eval{
-	use warnings FATAL => 'syntax';
+dies_ok{
 	use Acme::StringFormat;
 	my $s = 'foo' % '[%s]';
-};
+} 'dies in "syntax" fatal';
 like $@, qr/mismatch/, 'arguments mismatch';
 
-eval{
-	use warnings FATAL => 'syntax';
+dies_ok{
 	use Acme::StringFormat;
 	my $s = '%%' % 'foo';
-};
+} 'dies in "syntax" fatal';
 like $@, qr/mismatch/, 'arguments mismatch';
 
 

@@ -2,7 +2,7 @@ NAME
     Acme::StringFormat - Smart interface to sprintf()
 
 VERSION
-    This document describes Acme::StringFormat version 0.03
+    This document describes Acme::StringFormat version 0.04
 
 SYNOPSIS
         use Acme::StringFormat;
@@ -19,14 +19,14 @@ DESCRIPTION
             std::cout << format("[%1%][%2]") % "foo" % "bar" << std::endl;
 
     Now this pragmatic module provides Perl with a format operator "%",
-    which is equivalent to "sprintf()".
+    which is equivalent to "sprintf".
 
 INTERFACE
   "use Acme::StringFormat;"
-    Enables the format operator in the rest of the scope;
+    Enables the "sprintf" operator in the rest of the scope;
 
   "no Acme::StringFormat;"
-    Disables the format operator in the rest of the scope;
+    Disables the "sprintf" operator in the rest of the scope;
 
 DIAGNOSTICS
     "Arguments mismatch for Acme::StringFormat"
@@ -47,7 +47,7 @@ BUGS AND LIMITATIONS
     <http://rt.cpan.org/>.
 
 SEE ALSO
-    "sprintf" in perlfunc.
+    "sprintf" in perlfunc - this module is an interface to "sprintf".
 
     The following languages (or libraries) also provide "%" format
     operators:
@@ -63,9 +63,9 @@ SEE ALSO
 AUTHOR
     Goro Fuji <gfuji(at)cpan.org>.
 
-LICENCE AND COPYRIGHT
+LICENSE AND COPYRIGHT
     Copyright (c) 2008, Goro Fuji <gfuji(at)cpan.org>. Some rights reserved.
 
     This module is free software; you can redistribute it and/or modify it
-    under the same terms as Perl itself. See perlartistic.
+    under the same terms as Perl itself.
 

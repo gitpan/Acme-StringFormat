@@ -8,4 +8,8 @@ name 'Acme-StringFormat';
 
 all_from 'StringFormat.pm';
 
+test_requires
+	'Test::Exception' => 0.27,
+	'Test::Warn' => 0.11;
+
 WriteAll;

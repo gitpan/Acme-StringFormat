@@ -1,8 +1,12 @@
 .cvsignore
 Changes
-example/benchmark.pl
+example/compile_bench.pl
+example/hello.cpp
 example/hello.pl
+example/hello.py
+example/hello.rb
 example/math.pl
+example/run_bench.pl
 inc/Module/Install.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm
@@ -21,5 +25,6 @@ t/00_load.t
 t/01_sf.t
 t/02_object.t
 t/03_flags.t
+t/04_warn.t
 t/99_pod-coverage.t
 t/99_pod.t

@@ -5,4 +5,4 @@ use warnings;
 
 use Acme::StringFormat;
 
-say '[%s %s]' % 'Hello' % 'world';
+say '[%s, %s!]' % 'Hello' % 'world';
